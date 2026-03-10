@@ -61,7 +61,7 @@ public class GymController {
     private void displayExercises(File folder) {
         imageGrid.getChildren().clear();
         File[] files = folder.listFiles((dir, name) ->
-                name.toLowerCase().endsWith(".png") || name.toLowerCase().endsWith(".jpg"));
+                name.toLowerCase().endsWith(".png") || name.toLowerCase().endsWith(".PNG"));
 
         if (files != null) {
             for (File f : files) {
@@ -76,7 +76,8 @@ public class GymController {
         card.setAlignment(Pos.CENTER);
 
         ImageView iv = new ImageView(new Image(file.toURI().toString(), 180, 180, true, true, true));
-        Label title = new Label(file.getName().replace("-BG.png", "").replace("-", " "));
+        Label title = new Label(file.getName().toLowerCase().replace("-bg.png", "").replace("-", " ").toUpperCase());
+
         title.getStyleClass().add("exercise-title");
         title.setWrapText(true);
         title.setPrefWidth(160);
