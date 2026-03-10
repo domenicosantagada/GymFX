@@ -29,7 +29,7 @@ public class GymApp extends Application {
             }
         });
 
-        stage.setTitle("Gym Exercise - Domenico");
+        stage.setTitle("Gym FX - Domenico");
         stage.setScene(scene);
         stage.show();
     }
