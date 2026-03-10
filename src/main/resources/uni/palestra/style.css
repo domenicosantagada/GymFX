@@ -1,0 +1,75 @@
+.root {
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-background-color: #f8f9fa;
+}
+
+/* Sidebar Moderna */
+.sidebar {
+    -fx-background-color: #121212;
+    -fx-padding: 25 0 0 0;
+}
+
+.category-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #888888;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 25;
+    -fx-cursor: hand;
+    -fx-border-width: 0 0 0 3;
+    -fx-border-color: transparent;
+}
+
+.category-button:hover {
+    -fx-text-fill: white;
+    -fx-background-color: #1a1a1a;
+}
+
+.category-button:selected {
+    -fx-text-fill: #00d2ff;
+    -fx-border-color: #00d2ff;
+    -fx-background-color: #1a1a1a;
+}
+
+/* Griglia Immagini */
+.image-grid {
+    -fx-padding: 30;
+    -fx-background-color: #f8f9fa;
+}
+
+/* Card Esercizio */
+.exercise-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 5);
+    -fx-cursor: hand;
+    -fx-transition: 0.2s;
+}
+
+.exercise-card:hover {
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.12), 15, 0, 0, 8);
+}
+
+.exercise-title {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+    -fx-text-alignment: center;
+}
+
+/* Overlay per l'immagine ingrandita */
+.overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.85);
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
