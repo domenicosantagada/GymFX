@@ -1,4 +1,4 @@
-# <GYM FX> 🏋️‍♂️
+# GYM FX 🏋️‍♂️
 
 Un'applicazione desktop sviluppata in **JavaFX** che funge da guida visiva interattiva per gli esercizi da palestra.
 
