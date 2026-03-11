@@ -73,3 +73,14 @@
 .scroll-pane .viewport {
     -fx-background-color: transparent;
 }
+
+/* Stile per la card evidenziata */
+.highlighted-card {
+    -fx-border-color: #00E676; /* Colore del bordo (es. verde brillante) */
+    -fx-border-width: 4px;
+    -fx-border-radius: 10px;
+    -fx-background-color: rgba(0, 230, 118, 0.1); /* Leggero sfondo verde */
+    -fx-background-radius: 10px;
+    /* Effetto bagliore per trovarla ancora più velocemente */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 230, 118, 0.6), 15, 0, 0, 0);
+}

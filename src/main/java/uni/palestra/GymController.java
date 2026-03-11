@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -13,6 +14,8 @@ import javafx.scene.layout.VBox;
 import java.io.File;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class GymController {
 
@@ -23,9 +26,52 @@ public class GymController {
     @FXML
     private FlowPane imageGrid;
 
+    // Memoria per gli esercizi evidenziati
+    private Set<File> selectedExercises = new HashSet<>();
+
     @FXML
     public void initialize() {
         loadInternalResources();
+    }
+
+    private VBox createCard(File file) {
+        VBox card = new VBox(10);
+        card.getStyleClass().add("exercise-card");
+
+        // Se l'esercizio era già stato selezionato, riapplica il bordo quando cambi categoria
+        if (selectedExercises.contains(file)) {
+            card.getStyleClass().add("highlighted-card");
+        }
+
+        card.setAlignment(Pos.CENTER);
+
+        ImageView iv = new ImageView(new Image(file.toURI().toString(), 180, 180, true, true, true));
+        Label title = new Label(file.getName().toLowerCase().replace("-bg.png", "").replace("-", " ").toUpperCase());
+
+        title.getStyleClass().add("exercise-title");
+        title.setWrapText(true);
+        title.setPrefWidth(160);
+
+        card.getChildren().addAll(iv, title);
+
+        // Modifica la gestione del click: Sinistro per ingrandire, Destro per evidenziare
+        card.setOnMouseClicked(e -> {
+            if (e.getButton() == MouseButton.SECONDARY) {
+                // Click con il tasto destro: Seleziona / Deseleziona
+                if (selectedExercises.contains(file)) {
+                    selectedExercises.remove(file);
+                    card.getStyleClass().remove("highlighted-card");
+                } else {
+                    selectedExercises.add(file);
+                    card.getStyleClass().add("highlighted-card");
+                }
+            } else if (e.getButton() == MouseButton.PRIMARY) {
+                // Click con il tasto sinistro: Mostra a schermo intero
+                showFullImage(file);
+            }
+        });
+
+        return card;
     }
 
     private void loadInternalResources() {
@@ -68,23 +114,6 @@ public class GymController {
                 imageGrid.getChildren().add(createCard(f));
             }
         }
-    }
-
-    private VBox createCard(File file) {
-        VBox card = new VBox(10);
-        card.getStyleClass().add("exercise-card");
-        card.setAlignment(Pos.CENTER);
-
-        ImageView iv = new ImageView(new Image(file.toURI().toString(), 180, 180, true, true, true));
-        Label title = new Label(file.getName().toLowerCase().replace("-bg.png", "").replace("-", " ").toUpperCase());
-
-        title.getStyleClass().add("exercise-title");
-        title.setWrapText(true);
-        title.setPrefWidth(160);
-
-        card.getChildren().addAll(iv, title);
-        card.setOnMouseClicked(e -> showFullImage(file));
-        return card;
     }
 
     private void showFullImage(File file) {
